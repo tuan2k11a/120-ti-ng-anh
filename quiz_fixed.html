@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luyện Tập Tiếng Anh</title>
+    <title>English Practice Quiz</title>
     <style>
         * {
             margin: 0;
@@ -79,7 +79,7 @@
             padding: 20px;
             border-radius: 10px;
             color: #333;
-            font-size: 18px;
+            font-size: 16px;
             line-height: 1.6;
             margin-bottom: 20px;
             border-left: 4px solid #667eea;
@@ -100,7 +100,7 @@
             background: #f8f9fa;
             border-radius: 10px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 500;
             color: #333;
             transition: all 0.3s ease;
@@ -255,167 +255,167 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🎓 Luyện Tập Tiếng Anh</h1>
+            <h1>🎓 English Practice Quiz</h1>
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
-            <div class="progress-text" id="progressText">Câu 1 / 120</div>
+            <div class="progress-text" id="progressText">Question 1 / 120</div>
         </div>
 
         <div id="quizContainer">
             <div class="question-container">
-                <div class="question-number" id="questionNumber">Câu 1</div>
+                <div class="question-number" id="questionNumber">Question 1</div>
                 <div class="question-text" id="questionText"></div>
                 <div class="answers" id="answersContainer"></div>
                 <div class="feedback" id="feedback"></div>
                 <div class="button-container">
-                    <button class="next-btn" id="nextBtn" disabled>Câu Tiếp Theo →</button>
-                    <button class="reset-btn" id="resetBtn">Làm Lại</button>
+                    <button class="next-btn" id="nextBtn" disabled>Next Question →</button>
+                    <button class="reset-btn" id="resetBtn">Reset</button>
                 </div>
             </div>
         </div>
 
         <div id="resultContainer" class="result-container hidden">
-            <h2>🎉 Hoàn Thành!</h2>
+            <h2>🎉 Completed!</h2>
             <div class="score-display" id="scoreDisplay">0/120</div>
             <div class="score-percentage" id="scorePercentage">0%</div>
             <div class="result-message" id="resultMessage"></div>
             <div class="score-breakdown">
-                <p id="correctCount">Đúng: 0</p>
-                <p id="incorrectCount">Sai: 0</p>
+                <p id="correctCount">Correct: 0</p>
+                <p id="incorrectCount">Incorrect: 0</p>
                 <p id="passStatus"></p>
             </div>
-            <button class="reset-btn" onclick="location.reload()">Bắt Đầu Lại</button>
+            <button class="reset-btn" onclick="location.reload()">Start Over</button>
         </div>
     </div>
 
     <script>
         const questions = [
-            // TEST 1 (40 câu)
-            { question: "Question 1: Choose the word with different pronunciation from the other three", answers: ["A. eco-tour", "B. confident", "C. coral", "D. complex"], correct: "A" },
-            { question: "Question 2: Choose the word with different pronunciation", answers: ["A. played", "B. affected", "C. received", "D. explored"], correct: "C" },
-            { question: "Question 3: Choose the word with different stress", answers: ["A. communal", "B. accomplish", "C. construction", "D. artisan"], correct: "B" },
-            { question: "Question 4: Choose the word with different stress", answers: ["A. delay", "B. promote", "C. explore", "D. promise"], correct: "C" },
-            { question: "Question 5: 'At weekends the city is always packed with people.' The word 'packed' is closest in meaning to", answers: ["A. noisy", "B. busy", "C. crowded", "D. polluted"], correct: "C" },
-            { question: "Question 6: 'Many people prefer to buy domestic products' The word 'domestic' is opposite to", answers: ["A. urgent", "B. national", "C. sustainable", "D. foreign"], correct: "D" },
-            { question: "Question 7: Hoa apologizes to the teacher. What does the teacher reply?", answers: ["A. That's okay, Hoa", "B. It was my bad", "C. Yes, no problem", "D. I know you can do it"], correct: "A" },
-            { question: "Question 8: Nam answers a question about the job he wants to do", answers: ["A. I'm going to visit a dentist", "B. That's okay.", "C. I want to be a pilot.", "D. It's my pleasure."], correct: "C" },
-            { question: "Question 9: 'The more you practice, ______ you become.'", answers: ["A. the fluent", "B. the more fluent", "C. the more fluently", "D. the most fluent"], correct: "B" },
-            { question: "Question 10: 'The volunteers ________ collected rubbish in the park were praised'", answers: ["A. who", "B. which", "C. whose", "D. where"], correct: "A" },
-            { question: "Question 11: 'Choosing a proper _______ for a self-guided tour'", answers: ["A. destination", "B. departure", "C. tour guide", "D. travel agency"], correct: "A" },
-            { question: "Question 12: 'We need to ________ plastic bags to protect the environment.'", answers: ["A. turn on", "B. look after", "C. find", "D. cut down on"], correct: "D" },
-            { question: "Question 13: 'She didn't tell me ________ to meet, in the library or in the lab.'", answers: ["A. what", "B. when", "C. how", "D. where"], correct: "D" },
-            { question: "Question 14: 'Doing community service brings both __________ and mental benefits'", answers: ["A. physical", "B. optimistic", "C. occupied", "D. extended"], correct: "A" },
-            { question: "Question 15: 'The guide recommended that visitors ________ the rules'", answers: ["A. follow", "B. follows", "C. followed", "D. following"], correct: "A" },
-            { question: "Question 16: 'Our school encourages the younger ______ to take part'", answers: ["A. anniversary", "B. dependence", "C. opportunity", "D. generation"], correct: "D" },
-            { question: "Question 17: 'He avoided _______ the question I asked.'", answers: ["A. answer", "B. to answer", "C. answering", "D. answered"], correct: "C" },
-            { question: "Question 18: 'Ha Long Bay is one of the most famous natural _______'", answers: ["A. beaches", "B. wonders", "C. deserts", "D. forests"], correct: "B" },
-            { question: "Question 19: What do childhood memories bring?", answers: ["A. Confusion and stress", "B. Warmth and happiness", "C. Anger and sadness", "D. Fear and worry"], correct: "B" },
-            { question: "Question 20: What does 'It' in paragraph 2 refer to?", answers: ["A. History", "B. Visiting historical places", "C. An old village", "D. The country"], correct: "B" },
-            { question: "Question 21: Which is NOT mentioned?", answers: ["A. Learning life lessons", "B. Understanding national development", "C. Avoiding past mistakes", "D. Becoming famous"], correct: "D" },
-            { question: "Question 22: What does the author say about living in the past?", answers: ["A. Focus only on the past", "B. Forget the past", "C. Remember past but focus on present", "D. Past more important"], correct: "C" },
-            { question: "Question 23: What is the main idea of the paragraph?", answers: ["A. Importance of remembering the past", "B. How to visit historical places", "C. Why forget the past", "D. How to plan for the future"], correct: "A" },
-            { question: "Question 24: The past helps us make better decisions about ______", answers: ["A. holidays", "B. memories", "C. decisions", "D. future"], correct: "C" },
-            { question: "Question 25: 'Living a (25) ________ life is especially important for teenagers'", answers: ["A. stressful", "B. mental", "C. healthy", "D. physical"], correct: "C" },
-            { question: "Question 26: 'If teens want to stay healthy, they (26) ________ eat'", answers: ["A. might", "B. must", "C. may", "D. can"], correct: "B" },
-            { question: "Question 27: 'Give equal attention to both (27) _______ and mental health'", answers: ["A. healthy", "B. mental", "C. physical", "D. well-being"], correct: "C" },
-            { question: "Question 28: 'If students don't get enough sleep, they (28) _______ it hard'", answers: ["A. finds", "B. will find", "C. would find", "D. should find"], correct: "B" },
-            { question: "Question 29: 'Teens should (29) ________ priority to important tasks'", answers: ["A. give", "B. giving", "C. given", "D. gives"], correct: "A" },
-            { question: "Question 30: 'If they wait until the due (30) ________ to start their work'", answers: ["A. year", "B. month", "C. date", "D. day"], correct: "C" },
-            { question: "Question 31: Arrange the paragraph (a-b-c)", answers: ["A. c-b-a", "B. b-a-c", "C. b-c-a", "D. a-c-b"], correct: "A" },
-            { question: "Question 32: Arrange the letter (a-b-c-d)", answers: ["A. b-a-c-d", "B. b-c-a-d", "C. a-b-c-d", "D. b-a-d-c"], correct: "A" },
-            { question: "Question 33: Arrange the paragraph (a-e)", answers: ["A. a-d-c-e-b", "B. c-d-e-a-b", "C. c-a-d-e-b", "D. b-d-c-e-a"], correct: "D" },
-            { question: "Question 34: 'The dirtier the air gets, more difficult it is' - Correct the error", answers: ["A. The dirtier", "B. more", "C. is", "D. breathe"], correct: "B" },
-            { question: "Question 35: 'He suggested to plant more trees' - Correct the error", answers: ["A. suggested", "B. to plant", "C. more", "D. in"], correct: "B" },
-            { question: "Question 36: 'They are wondering where buying handcrafts' - Correct the error", answers: ["A. wondering", "B. for", "C. buying", "D. upcoming"], correct: "C" },
-            { question: "Question 37: 'She can't speak English confidently' - Which sentence has similar meaning?", answers: ["A. wishes she can speak", "B. wishes she could speak", "C. wishes she spoke", "D. wishes she speaks"], correct: "B" },
-            { question: "Question 38: 'The city is crowded but many people enjoy' - Which sentence has similar meaning?", answers: ["A. so many people enjoy", "B. Because crowded", "C. In spite of", "D. Even though the city"], correct: "D" },
-            { question: "Question 39: 'That device is ______ expensive that I can't buy it'", answers: ["A. too", "B. so", "C. very", "D. such"], correct: "A" },
-            { question: "Question 40: 'Scientists suggest that we ______ more renewable energy'", answers: ["A. used", "B. use", "C. will use", "D. using"], correct: "B" },
-            
-            // TEST 2 (40 câu)
-            { question: "Question 41: Choose the word with different pronunciation", answers: ["A. parent", "B. every", "C. iron", "D. foreign"], correct: "D" },
-            { question: "Question 42: Choose the word with different pronunciation", answers: ["A. electrician", "B. ticket", "C. environment", "D. check-up"], correct: "D" },
-            { question: "Question 43: Choose the word with different stress", answers: ["A. delay", "B. habit", "C. healthy", "D. ready"], correct: "A" },
-            { question: "Question 44: Choose the word with different stress", answers: ["A. environment", "B. generation", "C. pedestrian", "D. material"], correct: "A" },
-            { question: "Question 45: 'concentrate on what the interviewer is saying' - has similar meaning to", answers: ["A. look forward to", "B. listen to", "C. look into", "D. pay attention to"], correct: "D" },
-            { question: "Question 46: 'useful advice' - is opposite to", answers: ["A. meaningless", "B. helpful", "C. valuable", "D. careless"], correct: "A" },
-            { question: "Question 47: Trang asks Kim about her health. What does Kim say?", answers: ["A. Does he keep", "B. How do you look after", "C. What foods", "D. You should give"], correct: "B" },
-            { question: "Question 48: Nam invites Alice to visit the craft village. Alice replies", answers: ["A. No, I wouldn't", "B. Thank you. It's very kind", "C. That's a good question", "D. Thanks"], correct: "B" },
-            { question: "Question 49: 'I don't like _____ roads in big cities'", answers: ["A. congested", "B. modern", "C. winding", "D. smooth"], correct: "A" },
-            { question: "Question 50: 'The _____ person brought my package'", answers: ["A. operator", "B. communicator", "C. delivery", "D. transportation"], correct: "C" },
-            { question: "Question 51: 'you _____ watch TV while doing homework'", answers: ["A. may not", "B. can", "C. should not", "D. will"], correct: "C" },
-            { question: "Question 52: 'The______ actively residents participate, the stronger community'", answers: ["A. more actively", "B. more active", "C. most active", "D. much active"], correct: "B" },
-            { question: "Question 53: 'neighbors to ______ each other'", answers: ["A. pass out", "B. get along with", "C. turn down", "D. come across"], correct: "B" },
-            { question: "Question 54: 'Teenagers don't know _____ to exercise'", answers: ["A. where", "B. what", "C. when", "D. which"], correct: "C" },
-            { question: "Question 55: 'The boy hurt his leg when he _______ yesterday'", answers: ["A. played", "B. was playing", "C. plays", "D. is playing"], correct: "B" },
-            { question: "Question 56: 'Many teenagers wish they _______ stronger'", answers: ["A. are", "B. were", "C. wouldn't be", "D. had been"], correct: "B" },
-            { question: "Question 57: 'She _______ a healthy lifestyle since joining'", answers: ["A. follows", "B. followed", "C. has followed", "D. is following"], correct: "C" },
-            { question: "Question 58: 'They agreed _______ together to clean'", answers: ["A. work", "B. working", "C. to work", "D. worked"], correct: "C" },
-            { question: "Question 59: When can't teenagers turn off the Internet?", answers: ["A. When they are tired", "B. When they are on the net", "C. When they are at school", "D. With friends"], correct: "B" },
-            { question: "Question 60: Where can you read news?", answers: ["A. At school", "B. In books", "C. On the Internet", "D. On television"], correct: "C" },
-            { question: "Question 61: Why do some teenagers go online frequently?", answers: ["A. escape stress", "B. no information", "C. just go online", "D. no homework"], correct: "A" },
-            { question: "Question 62: What does 'It' in paragraph 4 refer to?", answers: ["A. computer", "B. Internet", "C. special software", "D. teenager"], correct: "C" },
-            { question: "Question 63: What does 'addicted' mean?", answers: ["A. bored with", "B. interested in", "C. unable to stop using", "D. afraid of"], correct: "C" },
-            { question: "Question 64: Which is NOT mentioned?", answers: ["A. news online", "B. affect health", "C. control time", "D. stop students"], correct: "D" },
-            { question: "Question 65: 'The roads are often congested, (25) _______ with cars'", answers: ["A. full", "B. situated", "C. available", "D. packed"], correct: "D" },
-            { question: "Question 66: 'There are many public (26) _______'", answers: ["A. amenities", "B. entertainments", "C. locations", "D. centres"], correct: "A" },
-            { question: "Question 67: 'often full (27) _______ people'", answers: ["A. at", "B. in", "C. of", "D. with"], correct: "C" },
-            { question: "Question 68: '(28) _______ they can save a lot of time'", answers: ["A. however", "B. so", "C. but", "D. although"], correct: "B" },
-            { question: "Question 69: 'choose (29) _______ here'", answers: ["A. moving", "B. to move", "C. moved", "D. move"], correct: "B" },
-            { question: "Question 70: 'love the (30) _______'", answers: ["A. excitement", "B. excite", "C. excited", "D. exciting"], correct: "A" },
-            { question: "Question 71: Arrange the conversation", answers: ["A. a-b-c", "B. b-a-c", "C. a-c-b", "D. c-a-b"], correct: "D" },
-            { question: "Question 72: Arrange the paragraph (5 parts)", answers: ["A. e-a-d-b-c", "B. e-d-b-a-c", "C. e-d-a-b-c", "D. e-b-d-a-c"], correct: "B" },
-            { question: "Question 73: Arrange the letter (4 parts)", answers: ["A. a-c-b-d", "B. c-b-a-d", "C. a-b-c-d", "D. c-a-b-d"], correct: "D" },
-            { question: "Question 74: 'Some residents plan cleaning' - Correct the error", answers: ["A. residents", "B. cleaning", "C. streets", "D. weekend"], correct: "B" },
-            { question: "Question 75: 'She asked me that I liked' - Correct the error", answers: ["A. in", "B. liked", "C. living", "D. that"], correct: "D" },
-            { question: "Question 76: 'The laptop which I bought it' - Correct the error", answers: ["A. bought", "B. it", "C. doesn't", "D. properly"], correct: "B" },
-            { question: "Question 77: Rephrase 'You should exercise regularly'", answers: ["A. advised exercising", "B. advised to exercise", "C. advised exercised", "D. advised exercise"], correct: "B" },
-            { question: "Question 78: Rephrase 'Although busy but should exercise'", answers: ["A. Because busy", "B. In spite busy", "C. busy so", "D. Despite being busy"], correct: "D" },
-            { question: "Question 79: 'She spoke loudly ______ could hear clearly'", answers: ["A. so that everyone", "B. such that", "C. for", "D. enough for"], correct: "A" },
-            { question: "Question 80: 'couldn't attend the meeting ______ feeling unwell'", answers: ["A. because she", "B. because of", "C. in spite of", "D. despite"], correct: "A" },
-            
-            // TEST 3 (40 câu)
-            { question: "Question 81: Choose the word with different pronunciation", answers: ["A. parent", "B. every", "C. iron", "D. foreign"], correct: "A" },
-            { question: "Question 82: Choose the word with different pronunciation", answers: ["A. electrician", "B. ticket", "C. environment", "D. check-up"], correct: "B" },
-            { question: "Question 83: Choose the word with different stress", answers: ["A. delay", "B. habit", "C. healthy", "D. ready"], correct: "D" },
-            { question: "Question 84: Choose the word with different stress", answers: ["A. environment", "B. generation", "C. pedestrian", "D. material"], correct: "C" },
-            { question: "Question 85: 'concentrate on' - has similar meaning to", answers: ["A. look forward", "B. listen to", "C. look into", "D. pay attention"], correct: "D" },
-            { question: "Question 86: 'useful advice' - is opposite to", answers: ["A. meaningless", "B. helpful", "C. valuable", "D. careless"], correct: "A" },
-            { question: "Question 87: Ask about health - appropriate question", answers: ["A. Does keep", "B. How do you", "C. What foods", "D. You should"], correct: "B" },
-            { question: "Question 88: Reply to an invitation to visit", answers: ["A. No wouldn't", "B. Thank you kind", "C. good question", "D. Thanks"], correct: "B" },
-            { question: "Question 89: 'I don't like _____ roads'", answers: ["A. congested", "B. modern", "C. winding", "D. smooth"], correct: "A" },
-            { question: "Question 90: 'The _____ person brought package'", answers: ["A. operator", "B. communicator", "C. delivery", "D. transportation"], correct: "C" },
-            { question: "Question 91: 'you _____ watch TV while doing'", answers: ["A. may not", "B. can", "C. should not", "D. will"], correct: "C" },
-            { question: "Question 92: 'The______ actively participate'", answers: ["A. more actively", "B. more active", "C. most active", "D. much active"], correct: "B" },
-            { question: "Question 93: 'neighbors to ______ each other'", answers: ["A. pass out", "B. get along", "C. turn down", "D. come across"], correct: "B" },
-            { question: "Question 94: 'don't know _____ to exercise'", answers: ["A. where", "B. what", "C. when", "D. which"], correct: "C" },
-            { question: "Question 95: 'The boy hurt leg when he _______'", answers: ["A. played", "B. was playing", "C. plays", "D. is playing"], correct: "B" },
-            { question: "Question 96: 'Many wish they _______ stronger'", answers: ["A. are", "B. were", "C. wouldn't be", "D. had been"], correct: "B" },
-            { question: "Question 97: 'She _______ lifestyle since joining'", answers: ["A. follows", "B. followed", "C. has followed", "D. is following"], correct: "C" },
-            { question: "Question 98: 'They agreed _______ together'", answers: ["A. work", "B. working", "C. to work", "D. worked"], correct: "C" },
-            { question: "Question 99: When can't they turn off the Internet?", answers: ["A. tired", "B. on the net", "C. at school", "D. with friends"], correct: "B" },
-            { question: "Question 100: Where can you read news?", answers: ["A. At school", "B. In books", "C. On Internet", "D. Television"], correct: "C" },
-            { question: "Question 101: Why do they go online frequently?", answers: ["A. escape stress", "B. no info", "C. go online", "D. no homework"], correct: "A" },
-            { question: "Question 102: What does 'It' refer to?", answers: ["A. computer", "B. Internet", "C. software", "D. teenager"], correct: "C" },
-            { question: "Question 103: What does 'addicted' mean?", answers: ["A. bored", "B. interested", "C. unable stop", "D. afraid"], correct: "C" },
-            { question: "Question 104: Which is NOT mentioned?", answers: ["A. news", "B. health", "C. control", "D. stop"], correct: "D" },
-            { question: "Question 105: 'congested, (25) _______ with cars'", answers: ["A. full", "B. situated", "C. available", "D. packed"], correct: "D" },
-            { question: "Question 106: 'many public (26) _______'", answers: ["A. amenities", "B. entertainments", "C. locations", "D. centres"], correct: "A" },
-            { question: "Question 107: 'full (27) _______ people'", answers: ["A. at", "B. in", "C. of", "D. with"], correct: "C" },
-            { question: "Question 108: '(28) _______ can save time'", answers: ["A. however", "B. so", "C. but", "D. although"], correct: "B" },
-            { question: "Question 109: 'choose (29) _______ here'", answers: ["A. moving", "B. to move", "C. moved", "D. move"], correct: "B" },
-            { question: "Question 110: 'love the (30) _______'", answers: ["A. excitement", "B. excite", "C. excited", "D. exciting"], correct: "A" },
-            { question: "Question 111: Arrange the conversation", answers: ["A. a-b-c", "B. b-a-c", "C. a-c-b", "D. c-a-b"], correct: "D" },
-            { question: "Question 112: Arrange the text", answers: ["A. e-a-d-b-c", "B. e-d-b-a-c", "C. e-d-a-b-c", "D. e-b-d-a-c"], correct: "B" },
-            { question: "Question 113: Arrange the letter", answers: ["A. a-c-b-d", "B. c-b-a-d", "C. a-b-c-d", "D. c-a-b-d"], correct: "D" },
-            { question: "Question 114: 'plan cleaning' - Error?", answers: ["A. residents", "B. cleaning", "C. streets", "D. weekend"], correct: "B" },
-            { question: "Question 115: 'asked me that' - Error?", answers: ["A. in", "B. liked", "C. living", "D. that"], correct: "D" },
-            { question: "Question 116: 'bought it' - Error?", answers: ["A. bought", "B. it", "C. doesn't", "D. properly"], correct: "B" },
-            { question: "Question 117: Rephrase 'should exercise'", answers: ["A. advised exercising", "B. advised to exercise", "C. advised exercised", "D. advised"], correct: "B" },
-            { question: "Question 118: Rephrase 'Although busy'", answers: ["A. Because busy", "B. In spite", "C. busy so", "D. Despite busy"], correct: "D" },
-            { question: "Question 119: 'spoke loudly ______'", answers: ["A. so that", "B. such that", "C. for", "D. enough"], correct: "A" },
-            { question: "Question 120: 'couldn't attend ______'", answers: ["A. because she", "B. because of", "C. in spite", "D. despite"], correct: "A" }
+            // REVIEW 1 (40 questions)
+            { question: "Question 1: Choose the word with different pronunciation", answers: ["A. played", "B. ended", "C. ruled", "D. cried"], correct: "B" },
+            { question: "Question 2: Choose the word with different pronunciation", answers: ["A. feature", "B. culture", "C. tradition", "D. statue"], correct: "C" },
+            { question: "Question 3: Choose the word with different stress", answers: ["A. between", "B. hygiene", "C. pricey", "D. metro"], correct: "A" },
+            { question: "Question 4: Choose the word with different stress", answers: ["A. authority", "B. environment", "C. variety", "D. information"], correct: "D" },
+            { question: "Question 5: The downtown area has become quite pricey in recent years", answers: ["A. affordable", "B. expensive", "C. cheap", "D. reasonable"], correct: "B" },
+            { question: "Question 6: Our trip to Da Nang was a memorable experience", answers: ["A. special", "B. easygoing", "C. forgettable", "D. traditional"], correct: "C" },
+            { question: "Question 7: Khanh: Can you tell me where to buy these souvenirs? Chi: ___", answers: ["A. Sure. I'll take you there.", "B. I'm afraid it's going to rain.", "C. OK, I talk to you now.", "D. No worries."], correct: "A" },
+            { question: "Question 8: David: What do you do in your free time? Mike: ___", answers: ["A. I play football in the local park.", "B. I played football yesterday.", "C. I am playing football tomorrow.", "D. I like my city very much."], correct: "A" },
+            { question: "Question 9: The tour guide took us to ___ of the ancient university", answers: ["A. go snorkeling", "B. give a performance", "C. tour a campus", "D. put up tents"], correct: "C" },
+            { question: "Question 10: I love reading books on my ___ because it allows me to carry", answers: ["A. camcorder", "B. printer", "C. smartwatch", "D. e-reader"], correct: "D" },
+            { question: "Question 11: ___ you talk about your problems, the more you think", answers: ["A. Less", "B. More", "C. The most", "D. The more"], correct: "D" },
+            { question: "Question 12: While she ___ along the river, she saw a beautiful rainbow", answers: ["A. was walking", "B. were walking", "C. is walking", "D. walk"], correct: "A" },
+            { question: "Question 13: I ___ this assignment several times", answers: ["A. do", "B. did", "C. have done", "D. doing"], correct: "C" },
+            { question: "Question 14: They decided to go on the trip ___ the weather was bad", answers: ["A. because", "B. though", "C. as", "D. if"], correct: "B" },
+            { question: "Question 15: She tries to avoid ___ junk food", answers: ["A. to eat", "B. eating", "C. eat", "D. ate"], correct: "B" },
+            { question: "Question 16: The car ___ he bought last year has already broken down", answers: ["A. which", "B. who", "C. whose", "D. what"], correct: "A" },
+            { question: "Question 17: Minh asked me if I ___ Mount Fansipan", answers: ["A. would know", "B. know", "C. knew", "D. will know"], correct: "C" },
+            { question: "Question 18: Visitors didn't know ___ to get to the train station", answers: ["A. when", "B. what", "C. where", "D. how"], correct: "D" },
+            { question: "Question 19: What is the main idea of the passage?", answers: ["A. The problems of transportation", "B. The advantages and disadvantages of tourism", "C. Famous tourist cities in the world", "D. The history of tourism"], correct: "B" },
+            { question: "Question 20: Why do people travel to different places?", answers: ["A. To find new jobs", "B. To build hotels", "C. To relax and learn about new cultures", "D. To study at universities"], correct: "C" },
+            { question: "Question 21: What is one benefit of tourism?", answers: ["A. It reduces population", "B. It creates jobs for local people", "C. It decreases the number of visitors", "D. It stops cultural exchange"], correct: "B" },
+            { question: "Question 22: What problem can tourism cause?", answers: ["A. People lose their traditions", "B. Tourists cannot find hotels", "C. The environment may be damaged", "D. Cities become smaller"], correct: "C" },
+            { question: "Question 23: What may happen if too many tourists visit a place?", answers: ["A. Beaches become cleaner", "B. People stop traveling", "C. Hotels close down", "D. Natural areas may be destroyed"], correct: "D" },
+            { question: "Question 24: What are governments encouraging?", answers: ["A. Responsible tourism", "B. Building more factories", "C. Traveling less often", "D. Closing tourist attractions"], correct: "A" },
+            { question: "Question 25: These places are not developed enough, it takes a long time to get there. Remote places are not (25) ___ big cities", answers: ["A. for", "B. from", "C. in", "D. with"], correct: "B" },
+            { question: "Question 26: The roads can be narrow and rough, so buses must move ___", answers: ["A. slower", "B. slowness", "C. slow", "D. slowly"], correct: "D" },
+            { question: "Question 27: ___, these destinations offer breathtaking views", answers: ["A. However", "B. Moreover", "C. Therefore", "D. For example"], correct: "A" },
+            { question: "Question 28: They can enjoy ___ tourism", answers: ["A. sports", "B. business", "C. adventure", "D. shopping"], correct: "C" },
+            { question: "Question 29: Tourists should always bring ___ clothing and supplies", answers: ["A. unsuitable", "B. suitable", "C. suitably", "D. suit"], correct: "B" },
+            { question: "Question 30: Visiting remote destinations helps people become more ___ and brave", answers: ["A. comfortable", "B. dependent", "C. independent", "D. careless"], correct: "C" },
+            { question: "Question 31: Arrange the conversation", answers: ["A. a-b-c", "B. b-a-c", "C. b-c-a", "D. c-a-b"], correct: "B" },
+            { question: "Question 32: Arrange the paragraph", answers: ["A. d-b-e-a-c", "B. d-c-b-e-a", "C. b-e-a-d-c", "D. d-b-a-e-c"], correct: "A" },
+            { question: "Question 33: Arrange the letter", answers: ["A. a-c-b-d", "B. a-d-b-c", "C. c-b-a-d", "D. d-a-c-b"], correct: "B" },
+            { question: "Question 34: I wish I can travel abroad - error is in", answers: ["A. can", "B. abroad", "C. with", "D. family"], correct: "A" },
+            { question: "Question 35: The man whom remained in the office - error is in", answers: ["A. The", "B. whom", "C. in", "D. was"], correct: "B" },
+            { question: "Question 36: People preserved the monument for years - error is in", answers: ["A. preserved", "B. for", "C. had", "D. value"], correct: "A" },
+            { question: "Question 37: Phong asked Mark about Giang Dien Waterfall - closest meaning", answers: ["A. will visit next week", "B. visited next week", "C. would visit the following week", "D. have visited"], correct: "C" },
+            { question: "Question 38: She last went shopping two months ago", answers: ["A. She hasn't gone shopping for two months", "B. She has two months to go shopping", "C. She didn't go shopping two months ago", "D. She has gone shopping for two months"], correct: "A" },
+            { question: "Question 39: The problem was ___ complicated that nobody could solve", answers: ["A. so", "B. such", "C. very", "D. too"], correct: "A" },
+            { question: "Question 40: Government advised that commuters ___ public transport", answers: ["A. to use", "B. using", "C. used", "D. should use"], correct: "D" },
+
+            // REVIEW 2 (40 questions)
+            { question: "Question 41: Choose word with different pronunciation", answers: ["A. eco-tour", "B. confident", "C. coral", "D. complex"], correct: "A" },
+            { question: "Question 42: Choose word with different pronunciation", answers: ["A. played", "B. affected", "C. received", "D. explored"], correct: "B" },
+            { question: "Question 43: Choose word with different stress", answers: ["A. communal", "B. accomplish", "C. construction", "D. artisan"], correct: "D" },
+            { question: "Question 44: Choose word with different stress", answers: ["A. delay", "B. promote", "C. explore", "D. promise"], correct: "D" },
+            { question: "Question 45: At weekends the city is always packed with people", answers: ["A. noisy", "B. busy", "C. crowded", "D. polluted"], correct: "C" },
+            { question: "Question 46: Many people prefer to buy domestic products", answers: ["A. urgent", "B. national", "C. sustainable", "D. foreign"], correct: "D" },
+            { question: "Question 47: Hoa apologizes for late submission", answers: ["A. That's okay, Hoa", "B. It was my bad", "C. Yes, no problem", "D. I know you can do it"], correct: "A" },
+            { question: "Question 48: Lan and Nam talking about future jobs", answers: ["A. I'm going to visit a dentist", "B. That's okay.", "C. I want to be a pilot.", "D. It's my pleasure."], correct: "C" },
+            { question: "Question 49: The more you practice, ___ you become", answers: ["A. the fluent", "B. the more fluent", "C. the more fluently", "D. the most fluent"], correct: "B" },
+            { question: "Question 50: The volunteers ___ collected rubbish were praised", answers: ["A. who", "B. which", "C. whose", "D. where"], correct: "A" },
+            { question: "Question 51: Choosing a proper ___ for a self-guided tour", answers: ["A. destination", "B. departure", "C. tour guide", "D. travel agency"], correct: "A" },
+            { question: "Question 52: We need to ___ plastic bags to protect environment", answers: ["A. turn on", "B. look after", "C. find", "D. cut down on"], correct: "D" },
+            { question: "Question 53: She didn't tell me ___ to meet", answers: ["A. what", "B. when", "C. how", "D. where"], correct: "D" },
+            { question: "Question 54: Doing community service brings ___ and mental benefits", answers: ["A. physical", "B. optimistic", "C. occupied", "D. extended"], correct: "A" },
+            { question: "Question 55: The guide recommended that visitors ___ the rules", answers: ["A. follow", "B. follows", "C. followed", "D. following"], correct: "A" },
+            { question: "Question 56: Our school encourages the younger ___ to take part", answers: ["A. anniversary", "B. dependence", "C. opportunity", "D. generation"], correct: "D" },
+            { question: "Question 57: He avoided ___ the question I asked", answers: ["A. answer", "B. to answer", "C. answering", "D. answered"], correct: "C" },
+            { question: "Question 58: Ha Long Bay is one of the most famous natural ___", answers: ["A. beaches", "B. wonders", "C. deserts", "D. forests"], correct: "B" },
+            { question: "Question 59: What do childhood memories often bring?", answers: ["A. Confusion and stress", "B. Warmth and happiness", "C. Anger and sadness", "D. Fear and worry"], correct: "B" },
+            { question: "Question 60: What does 'It' refer to in the sentence about visiting?", answers: ["A. History", "B. Visiting historical places", "C. An old village", "D. The country"], correct: "B" },
+            { question: "Question 61: Which is NOT mentioned as a benefit?", answers: ["A. Learning life lessons", "B. Understanding national development", "C. Avoiding past mistakes", "D. Becoming famous"], correct: "D" },
+            { question: "Question 62: What does the writer say about living in the past?", answers: ["A. Focus only on the past", "B. Forget the past", "C. Remember past but focus on present", "D. Past more important"], correct: "C" },
+            { question: "Question 63: What is the main idea of the passage?", answers: ["A. Importance of remembering the past", "B. How to visit historical places", "C. Why forget the past", "D. How to plan for the future"], correct: "A" },
+            { question: "Question 64: The past becomes a guide helping us make ___", answers: ["A. holidays", "B. memories", "C. decisions", "D. future"], correct: "C" },
+            { question: "Question 65: Living a ___ life is especially important for teenagers", answers: ["A. stressful", "B. mental", "C. healthy", "D. physical"], correct: "C" },
+            { question: "Question 66: If teens want to stay healthy, they ___ eat well-balanced diet", answers: ["A. might", "B. must", "C. may", "D. can"], correct: "B" },
+            { question: "Question 67: Teens should give equal attention to both ___ and mental health", answers: ["A. healthy", "B. mental", "C. physical", "D. well-being"], correct: "C" },
+            { question: "Question 68: If students don't get enough sleep, they ___ it hard", answers: ["A. finds", "B. will find", "C. would find", "D. should find"], correct: "B" },
+            { question: "Question 69: Teens should ___ priority to important tasks", answers: ["A. give", "B. giving", "C. given", "D. gives"], correct: "A" },
+            { question: "Question 70: If they wait until the due ___ to start their work", answers: ["A. year", "B. month", "C. date", "D. day"], correct: "C" },
+            { question: "Question 71: Arrange the paragraph about Vietnamese lifestyle", answers: ["A. c-b-a", "B. b-a-c", "C. b-c-a", "D. a-c-b"], correct: "A" },
+            { question: "Question 72: Arrange the letter from Mr. Chairman", answers: ["A. b-a-c-d", "B. b-c-a-d", "C. a-b-c-d", "D. b-a-d-c"], correct: "A" },
+            { question: "Question 73: Arrange about summer camp experience", answers: ["A. a-d-c-e-b", "B. c-d-e-a-b", "C. c-a-d-e-b", "D. b-d-c-e-a"], correct: "D" },
+            { question: "Question 74: The dirtier the air gets, more difficult - error is", answers: ["A. The dirtier", "B. more", "C. is", "D. breathe"], correct: "B" },
+            { question: "Question 75: He suggested to plant more trees - error is", answers: ["A. suggested", "B. to plant", "C. more", "D. in"], correct: "B" },
+            { question: "Question 76: They are wondering where buying handcrafts - error is", answers: ["A. wondering", "B. for", "C. buying", "D. upcoming"], correct: "C" },
+            { question: "Question 77: She can't speak English confidently - closest meaning", answers: ["A. wishes she can speak", "B. wishes she could speak", "C. wishes she spoke", "D. wishes she speaks"], correct: "B" },
+            { question: "Question 78: The city is very crowded, but people enjoy - closest meaning", answers: ["A. so many people enjoy", "B. Because crowded", "C. In spite of", "D. Even though the city"], correct: "D" },
+            { question: "Question 79: That device is ___ expensive that I can't buy it", answers: ["A. too", "B. so", "C. very", "D. such"], correct: "B" },
+            { question: "Question 80: Scientists suggest that we ___ more renewable energy", answers: ["A. used", "B. use", "C. will use", "D. using"], correct: "B" },
+
+            // REVIEW 3 (40 questions)
+            { question: "Question 81: Choose word with different pronunciation", answers: ["A. parent", "B. every", "C. iron", "D. foreign"], correct: "C" },
+            { question: "Question 82: Choose word with different pronunciation", answers: ["A. electrician", "B. ticket", "C. environment", "D. check-up"], correct: "D" },
+            { question: "Question 83: Choose word with different stress", answers: ["A. delay", "B. habit", "C. healthy", "D. ready"], correct: "A" },
+            { question: "Question 84: Choose word with different stress", answers: ["A. environment", "B. generation", "C. pedestrian", "D. material"], correct: "B" },
+            { question: "Question 85: Concentrate on what the interviewer is saying", answers: ["A. look forward to", "B. listen to", "C. look into", "D. pay attention to"], correct: "D" },
+            { question: "Question 86: Neighbors gave us useful advice", answers: ["A. meaningless", "B. helpful", "C. valuable", "D. careless"], correct: "A" },
+            { question: "Question 87: Trang and Kim talking about health", answers: ["A. Does he keep", "B. How do you look after", "C. What foods", "D. You should give"], correct: "B" },
+            { question: "Question 88: Nam asking Alice about craft village", answers: ["A. No, I wouldn't", "B. Thank you. It's very kind of you", "C. That's a good question", "D. Thanks. No problem."], correct: "B" },
+            { question: "Question 89: I don't like ___ roads in big cities", answers: ["A. congested", "B. modern", "C. winding", "D. smooth"], correct: "A" },
+            { question: "Question 90: The ___ person brought my package", answers: ["A. operator", "B. communicator", "C. delivery", "D. transportation"], correct: "C" },
+            { question: "Question 91: You ___ watch TV while doing homework", answers: ["A. may not", "B. can", "C. should not", "D. will"], correct: "C" },
+            { question: "Question 92: The ___ local residents participate, stronger community", answers: ["A. more actively", "B. more active", "C. most active", "D. much active"], correct: "A" },
+            { question: "Question 93: Important for neighbors to ___ each other", answers: ["A. pass out", "B. get along with", "C. turn down", "D. come across"], correct: "B" },
+            { question: "Question 94: Teenagers don't know ___ to exercise", answers: ["A. where", "B. what", "C. when", "D. which"], correct: "C" },
+            { question: "Question 95: The boy hurt his leg when he ___ in school yard", answers: ["A. played", "B. was playing", "C. plays", "D. is playing"], correct: "B" },
+            { question: "Question 96: Many teenagers wish they ___ stronger", answers: ["A. are", "B. were", "C. wouldn't be", "D. had been"], correct: "B" },
+            { question: "Question 97: She ___ a healthy lifestyle since joining", answers: ["A. follows", "B. followed", "C. has followed", "D. is following"], correct: "C" },
+            { question: "Question 98: They agreed ___ together to clean", answers: ["A. work", "B. working", "C. to work", "D. worked"], correct: "C" },
+            { question: "Question 99: When can teenagers not turn off Internet?", answers: ["A. When they are tired", "B. When they are on the net", "C. When they are at school", "D. With friends"], correct: "B" },
+            { question: "Question 100: Where can people read news?", answers: ["A. At school", "B. In books", "C. On the Internet", "D. On television"], correct: "C" },
+            { question: "Question 101: Why do some teenagers go online much?", answers: ["A. escape stress", "B. no information", "C. just go online", "D. no homework"], correct: "A" },
+            { question: "Question 102: The word 'It' refers to", answers: ["A. computer", "B. Internet", "C. special software", "D. teenager"], correct: "C" },
+            { question: "Question 103: The word 'addicted' is closest in meaning to", answers: ["A. bored with", "B. interested in", "C. unable to stop using", "D. afraid of"], correct: "C" },
+            { question: "Question 104: Which is NOT mentioned?", answers: ["A. Teenagers can read news online", "B. Internet addiction can affect health", "C. Special software can control time", "D. Teachers stop students"], correct: "D" },
+            { question: "Question 105: Life downtown, roads are ___ with cars", answers: ["A. full", "B. situated", "C. available", "D. packed"], correct: "D" },
+            { question: "Question 106: There are many public ___ like parks", answers: ["A. amenities", "B. entertainments", "C. locations", "D. centres"], correct: "A" },
+            { question: "Question 107: These places are often full ___ people", answers: ["A. at", "B. in", "C. of", "D. with"], correct: "C" },
+            { question: "Question 108: ___ they can save a lot of time", answers: ["A. however", "B. so", "C. but", "D. although"], correct: "B" },
+            { question: "Question 109: Many people choose ___ here", answers: ["A. moving", "B. to move", "C. moved", "D. move"], correct: "B" },
+            { question: "Question 110: They love the ___ and feel more chances", answers: ["A. excitement", "B. excite", "C. excited", "D. exciting"], correct: "A" },
+            { question: "Question 111: Arrange conversation about living there", answers: ["A. a-b-c", "B. b-a-c", "C. a-c-b", "D. c-a-b"], correct: "D" },
+            { question: "Question 112: Arrange paragraph about making community", answers: ["A. e-a-d-b-c", "B. e-d-b-a-c", "C. e-d-a-b-c", "D. e-b-d-a-c"], correct: "C" },
+            { question: "Question 113: Arrange letter about clean-up", answers: ["A. a-c-b-d", "B. c-b-a-d", "C. a-b-c-d", "D. c-a-b-d"], correct: "D" },
+            { question: "Question 114: Some residents plan cleaning - error is", answers: ["A. residents", "B. cleaning", "C. streets", "D. weekend"], correct: "B" },
+            { question: "Question 115: She asked me that I liked - error is", answers: ["A. in", "B. liked", "C. living", "D. that"], correct: "D" },
+            { question: "Question 116: The laptop which I bought it - error is", answers: ["A. bought", "B. it", "C. doesn't", "D. properly"], correct: "B" },
+            { question: "Question 117: The doctor said exercise regularly - closest meaning", answers: ["A. advised exercising regularly", "B. advised to exercise regularly", "C. advised exercised regularly", "D. advised to exercise"], correct: "B" },
+            { question: "Question 118: Although teenagers busy, should exercise - closest meaning", answers: ["A. Because busy", "B. In spite busy", "C. busy so", "D. Despite being busy"], correct: "D" },
+            { question: "Question 119: She spoke loudly ___ in the room could hear", answers: ["A. so that everyone", "B. such that", "C. for", "D. enough for"], correct: "A" },
+            { question: "Question 120: She couldn't attend meeting ___ was unwell", answers: ["A. because she", "B. because of being", "C. in spite of she", "D. despite being"], correct: "A" }
         ];
 
         let currentQuestion = 0;
@@ -425,7 +425,7 @@
 
         function displayQuestion() {
             const question = questions[currentQuestion];
-            document.getElementById('questionNumber').textContent = `Câu ${currentQuestion + 1}`;
+            document.getElementById('questionNumber').textContent = `Question ${currentQuestion + 1}`;
             document.getElementById('questionText').textContent = question.question;
             
             const answersContainer = document.getElementById('answersContainer');
@@ -435,6 +435,7 @@
                 const btn = document.createElement('button');
                 btn.className = 'answer-btn';
                 btn.textContent = answer;
+                btn.dataset.option = answer.trim().charAt(0);
                 btn.onclick = () => selectAnswer(answer);
                 answersContainer.appendChild(btn);
             });
@@ -448,53 +449,49 @@
         }
 
         function selectAnswer(answer) {
-    if (answered) return;
+            if (answered) return;
 
-    answered = true;
-    selectedAnswer = answer;
-    const question = questions[currentQuestion];
+            answered = true;
+            selectedAnswer = answer;
+            const question = questions[currentQuestion];
 
-    // ✅ FIX: lấy chữ A/B/C/D
-    const selectedLetter = answer.charAt(0);
-    const isCorrect = selectedLetter === question.correct;
+            const selectedLetter = answer.trim().charAt(0);
+            const isCorrect = selectedLetter === question.correct;
 
-    const buttons = document.querySelectorAll('.answer-btn');
-    buttons.forEach((btn) => {
-        btn.disabled = true;
+            const buttons = document.querySelectorAll('.answer-btn');
+            buttons.forEach((btn) => {
+                btn.disabled = true;
 
-        // ✅ highlight đáp án đúng
-        if (btn.textContent.charAt(0) === question.correct) {
-            btn.classList.add('correct');
+                if (btn.dataset.option === question.correct) {
+                    btn.classList.add('correct');
+                }
+
+                if (btn.dataset.option === selectedLetter) {
+                    btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+                }
+            });
+
+            const feedback = document.getElementById('feedback');
+            if (isCorrect) {
+                feedback.textContent = '✓ Correct!';
+                feedback.className = 'feedback correct';
+                score++;
+            } else {
+                feedback.textContent = `✗ Incorrect! The correct answer is: ${question.correct}`;
+                feedback.className = 'feedback incorrect';
+            }
+
+            document.getElementById('nextBtn').disabled = false;
+
+            setTimeout(() => {
+                currentQuestion++;
+                if (currentQuestion < questions.length) {
+                    displayQuestion();
+                } else {
+                    showResults();
+                }
+            }, 1500);
         }
-
-        // đáp án bạn chọn
-        if (btn.textContent === answer) {
-            btn.classList.add(isCorrect ? 'correct' : 'incorrect');
-        }
-    });
-
-    const feedback = document.getElementById('feedback');
-    if (isCorrect) {
-        feedback.textContent = '✓ Chính xác!';
-        feedback.className = 'feedback correct';
-        score++;
-    } else {
-        feedback.textContent = `✗ Sai! Đáp án đúng là: ${question.correct}`;
-        feedback.className = 'feedback incorrect';
-    }
-
-    document.getElementById('nextBtn').disabled = false;
-
-    // AUTO NEXT CHẮC CHẮN CHẠY
-    setTimeout(() => {
-    currentQuestion++;
-    if (currentQuestion < questions.length) {
-        displayQuestion();
-    } else {
-        showResults();
-    }
-}, 1500);
-}
 
         function nextQuestion() {
             currentQuestion++;
@@ -508,7 +505,7 @@
         function updateProgress() {
             const progress = ((currentQuestion) / questions.length) * 100;
             document.getElementById('progressFill').style.width = progress + '%';
-            document.getElementById('progressText').textContent = `Câu ${currentQuestion + 1} / ${questions.length}`;
+            document.getElementById('progressText').textContent = `Question ${currentQuestion + 1} / ${questions.length}`;
         }
 
         function showResults() {
@@ -521,23 +518,23 @@
 
             let message = '';
             if (percentage === 100) {
-                message = '🌟 Tuyệt vời! Bạn đã trả lời hoàn hảo!';
+                message = '🌟 Perfect! You got all questions correct!';
             } else if (percentage >= 80) {
-                message = '👏 Rất tốt! Bạn làm được hơn 80%!';
+                message = '👏 Excellent! You scored above 80%!';
             } else if (percentage >= 60) {
-                message = '👍 Khá tốt! Hãy tiếp tục cố gắng!';
+                message = '👍 Good! Keep practicing!';
             } else if (percentage >= 50) {
-                message = '📚 Bạn cần ôn tập thêm!';
+                message = '📚 You need more practice!';
             } else {
-                message = '💪 Hãy cố gắng học thêm và làm lại!';
+                message = '💪 Keep studying and try again!';
             }
 
             document.getElementById('resultMessage').textContent = message;
-            document.getElementById('correctCount').textContent = `✓ Đúng: ${score} câu`;
-            document.getElementById('incorrectCount').textContent = `✗ Sai: ${questions.length - score} câu`;
+            document.getElementById('correctCount').textContent = `✓ Correct: ${score} questions`;
+            document.getElementById('incorrectCount').textContent = `✗ Incorrect: ${questions.length - score} questions`;
             
-            const passStatus = percentage >= 50 ? '✓ Đạt' : '✗ Không đạt';
-            document.getElementById('passStatus').textContent = `Kết quả: ${passStatus}`;
+            const passStatus = percentage >= 50 ? '✓ Passed' : '✗ Failed';
+            document.getElementById('passStatus').textContent = `Result: ${passStatus}`;
         }
 
         document.getElementById('nextBtn').addEventListener('click', nextQuestion);
@@ -551,7 +548,6 @@
             displayQuestion();
         });
 
-        // Khởi tạo
         displayQuestion();
     </script>
 </body>
